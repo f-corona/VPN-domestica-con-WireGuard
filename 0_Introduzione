@@ -1,41 +1,3 @@
-# 🛡️ VPN Domestica con WireGuard
-
-<p align="center">
-  <img height="110" src="https://images.icon-icons.com/2699/PNG/512/wireguard_logo_icon_167956.png">
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-In%20sviluppo-blue">
-  <img src="https://img.shields.io/badge/Linux-Server-black">
-  <img src="https://img.shields.io/badge/WireGuard-Active-red">
-  <img src="https://img.shields.io/badge/Proxmox-Ready-orange">
-  <img src="https://img.shields.io/badge/Use%20Case-Home%20Lab-green">
-</p>
-
----
-
-## 📌 0️⃣ Introduzione
-Attraverso questa guida è possibile realizzare una **VPN domestica** per poter connettersi alla propria rete di casa (oppure di lavoro) anche da remoto. Per farlo utilizzeremo i seguenti servizi:
-- Un servizio di DDNS (se non abbiamo un IP statico)
-- Un server Linux (utilizzerò Debian)
-- Un Proxmox Virtual Environment (facoltativo ma consigliatissimo)
-- Wireguard
-- Telegram per la creazione di un Bot
-
-Per farlo avremo bisogno di:
-- Una connessione internet con IP pubblico
-- Un computer su cui eseguire Proxmox oppure direttamente il Server Linux
-- Un computer da cui controlleremo Proxmox
-- Un telefono con una connessione in rete dati per testare la VPN (o altri modi equivalenti)
-
----
-
-## ⚠️ DISCLAIMER
-Questo progetto è la messa in atto di quanto descritto nel video dell'utente ...  
-L'obiettivo è quello di spiegare alcuni passaggi che sono stati saltati o affrontati troppo velocemente, arricchendoli con spiegazioni tecniche e approfondimenti didattici.
-
----
-
 ## 📚 Sommario
 | Capitolo | Titolo | Link |
 |--------|--------|------|
@@ -53,9 +15,9 @@ L'obiettivo è quello di spiegare alcuni passaggi che sono stati saltati o affro
 
 ---
 
-# 📘 Concetti di base
+# 0️⃣ Introduzione
 
-## 🧠 Diamo prima alcune definizioni
+## 📘 Concetti di base
 
 ### 🔹 Indirizzo IP – Internet Protocol
 È un numero che identifica in modo univoco un nodo connesso a una rete. Esistono varie classi e tipologie, a noi interessa distinguere tra statico, dinamico, pubblico e CG-NAT. Queste tipologie di IP vengono assegnate dal nostro ISP (Internet Service Provider).
@@ -90,18 +52,6 @@ A[Ciro è connesso a internet con IP Pubblico XX.XX.XX.XX] --> B((TUNNEL VPN))
 B --> C[Tutto il traffico di Ciro è indirizzato alla VPN. Ciro è su internet con indirizzo YY.YY.YY.YY]
 ```
 In questo modo, l'utente sarà connesso a Internet, ma il suo traffico passa prima nel tunnel e dopo esce sulla rete.
-
----
-
-## 🧰 Cosa ci serve per questo progetto:
-- Una connessione con **IP statico** o **IP pubblico**
-
-L'IP statico nella maggioranza dei casi è a pagamento e va richiesto, quindi controllate se avete un IP pubblico. Per farlo avete diversi modi:
-- chiederlo direttamente al vostro ISP  
-- accedere al vostro router e copiare l'IP indicato in "IP WAN" o altre voci simili e confrontarlo con quello che vi appare visitando un sito che mostra il vostro IP (basta cercare "my IP" su internet e aprire uno dei risultati)  
-- se il vostro IP è nella fascia da `100.64.0.0` a `100.127.255.255` molto probabilmente è un IP sotto CG_NAT  
-- da terminale digitare: `tracert [tuo_ip_pubblico]` e verificare i risultati.  
-Se c'è un solo passaggio si ha IP pubblico, altrimenti è sotto CG-NAT.
 
 ---
 
